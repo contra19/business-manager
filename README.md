@@ -96,8 +96,8 @@ business-manager/
 ├── package.json
 └── README.md
 ```
-## Sample Video
-[Sample Video](https://drive.google.com/file/d/1X65RzqFbJDsSsT1LT0lRkGSwFbWThZvi/view?usp=drive_link)
+## Demo Video
+[Demo Video](https://drive.google.com/file/d/1wjDRzS3GFTxsuH0KhlOgXFgvlx3Nl4z0/view?usp=drive_link)
 
 ## Code Structure
 
@@ -126,6 +126,11 @@ Contributions are welcome! Please follow these steps:
 3. Commit your changes (`git commit -m 'Add new feature'`).
 4. Push to the branch (`git push origin feature-branch`).
 5. Create a new Pull Request.
+
+## Future Changes / Current Issues
+
+- Currently there is no separate managersa table. This creates a logical issue with trying to convert non-manager employees to managers.
+- A managers column/table will be added in the next iteration.  
 
 ## License
 
