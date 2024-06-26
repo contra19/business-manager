@@ -96,8 +96,8 @@ business-manager/
 ├── package.json
 └── README.md
 ```
-## Sample Video
-[Sample Video](https://drive.google.com/file/d/1X65RzqFbJDsSsT1LT0lRkGSwFbWThZvi/view?usp=drive_link)
+## Demo Video
+[Demo Video](https://drive.google.com/file/d/1wjDRzS3GFTxsuH0KhlOgXFgvlx3Nl4z0/view?usp=drive_link)
 
 ## Code Structure
 
