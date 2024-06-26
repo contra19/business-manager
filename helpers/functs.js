@@ -333,10 +333,10 @@ async function updateEmployeeManager() {
     ]);
 
     // Check if managerID is empty and if so set to null 
-    if (answers.managerID === '') {
-        managerID = null;
+    if (answers.newManagerID === '') {
+        newManagerID = null;
     } else {
-        managerID = parseInt(answers.managerID);
+        newManagerID = parseInt(answers.newManagerID);
     }
 
     const client = new Client(dbConfig);
@@ -344,7 +344,7 @@ async function updateEmployeeManager() {
 
     try {
         const query = Queries.updateEmployeeManager;
-        const values = [parseInt(answers.newManagerID), parseInt(answers.employeeID)];
+        const values = [newManagerID, parseInt(answers.employeeID)];
         const res = await client.query(query, values);
         console.log(`Successfully updated manager for employee ${res.rows[0].first_name} ${res.rows[0].last_name}.`);
         console.log();
@@ -354,7 +354,6 @@ async function updateEmployeeManager() {
     } finally {
         await client.end();
     }
-
 }
 
 // Function to delete a department from the database
@@ -505,9 +504,9 @@ async function handleViewOption(option) {
         case 'VIEW Employees By Manager':
             const managers = await fetchManagers();
             const managerChoices = managers.map(manager => ({
-            name: `${manager["First Name"]} ${manager["Last Name"]} - ${manager["Department"]} - ${manager["Title"]}`,
-            value: manager["Manager ID"]
-        }));    
+                name: `${manager["First Name"]} ${manager["Last Name"]} - ${manager["Department"]} - ${manager["Title"]}`,
+                value: manager["Manager ID"]
+            }));
 
             const managerAnswer = await inquirer.prompt([
                 {
