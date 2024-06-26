@@ -1,8 +1,17 @@
 // Import required modules
 const inquirer = require('inquirer');
-const { Client } = require('pg');
-const dbConfig = require('./config/config');
-const { addDepartment, addRole, addEmployee, updateEmployeeRole, handleViewOption } = require('./helpers/functs');
+const colors = require('colors');
+const {
+    addDepartment,
+    addRole,
+    addEmployee,
+    updateEmployeeRole,
+    updateEmployeeManager,
+    deleteDepartment,
+    deleteRole,
+    deleteEmployee,
+    handleViewOption
+} = require('./helpers/functs');
 
 // Main menu questions
 const mainMenuQuestions = [
@@ -10,51 +19,77 @@ const mainMenuQuestions = [
         type: 'list',
         name: 'menu',
         message: 'Welcome to the Business Manager App. Please select an option from the following menu:',
-        choices: ['View ALL Departments', 'View ALL Roles', 'View ALL Employees', 'ADD Department', 'ADD Role', 'ADD Employee', 'Update Employee Role', 'Exit'] 
+        choices: [
+            'VIEW All Departments',
+            'VIEW All Roles',
+            'VIEW All Employees',
+            'VIEW Employees By Manager',
+            'VIEW Employees By Department',
+            'VIEW Total Utilized Budget By Department',
+            'ADD New Department',
+            'ADD New Role',
+            'ADD New Employee',
+            'UPDATE Employee Role',
+            'UPDATE Employee Manager',
+            'DELETE Department',
+            'DELETE Role',
+            'DELETE Employee',
+            'EXIT'
+        ]
     },
 ];
 
+// Main menu function
 async function mainMenu() {
-    const client = new Client(dbConfig);
-    try {
-        await client.connect();
+    // Loop to display the main menu and handle user selection until EXIT is selected
+    while (true) {
+        const { menu: selectedMenu } = await inquirer.prompt(mainMenuQuestions);
 
-        while (true) {
-            const answers = await inquirer.prompt(mainMenuQuestions);
-            const selectedMenu = answers.menu;
+        // Exit the application if the user selects 'EXIT'
+        if (selectedMenu === 'EXIT') {
+            console.log('Exiting the Business Manager App...');
+            break;
+        }
 
-            if (selectedMenu === 'Exit') {
-                console.log('Exiting the Business Manager App...');
-                break; // Exit the while loop and end the program
-            }
-
-            if (selectedMenu.startsWith('View')) {
-                await handleViewOption(selectedMenu, client);
-            } else {
-                // Call the corresponding submenu function based on the selected menu
+        // Handle VIEW options
+        if (selectedMenu.startsWith('VIEW')) {
+            await handleViewOption(selectedMenu);
+        } else {
+            // Call the corresponding submenu function based on the selected menu
+            try {
                 switch (selectedMenu) {
-                    case 'ADD Department':
+                    case 'ADD New Department':
                         await addDepartment();
                         break;
-                    case 'ADD Role':
+                    case 'ADD New Role':
                         await addRole();
                         break;
-                    case 'ADD Employee':
+                    case 'ADD New Employee':
                         await addEmployee();
                         break;
-                    case 'Update Employee Role':
+                    case 'UPDATE Employee Role':
                         await updateEmployeeRole();
+                        break;
+                    case 'UPDATE Employee Manager':
+                        await updateEmployeeManager();
+                        break;
+                    case 'DELETE Department':
+                        await deleteDepartment();
+                        break;
+                    case 'DELETE Role':
+                        await deleteRole();
+                        break;
+                    case 'DELETE Employee':
+                        await deleteEmployee();
                         break;
                     default:
                         console.log('Invalid submenu option');
                         break;
                 }
+            } catch (err) {
+                console.error(`Error handling ${selectedMenu}:`, err);
             }
         }
-    } catch (err) {
-        console.error('Error in main menu:', err);
-    } finally {
-        await client.end();
     }
 }
 
