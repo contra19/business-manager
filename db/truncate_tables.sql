@@ -1,0 +1,1 @@
+truncate employee, role, department;
