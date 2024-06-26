@@ -127,6 +127,11 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature-branch`).
 5. Create a new Pull Request.
 
+## Future Changes / Current Issues
+
+- Currently there is no separate managersa table. This creates a logical issue with trying to convert non-manager employees to managers.
+- A managers column/table will be added in the next iteration.  
+
 ## License
 
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
