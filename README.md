@@ -7,6 +7,21 @@ The Employee Management System is your all-in-one solution for efficient and eff
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
+# Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Demo Video](#demo-video)
+- [Code Structure](#code-structure)
+- [Tests](#tests)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+- [Future Changes / Current Issues](#future-changes--current-issues)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 ## Overview
 
